@@ -1,3 +1,3 @@
 [workspace]
-members = ["constant_05","string_03", "user_input_01", "variables_02"]
+members = ["constant_05", "modules_chap05","string_03", "user_input_01", "variables_02"]
 resolver = "3"
