@@ -1,19 +1,23 @@
 #![allow(dead_code)]
 #[allow(unused_variables)]
 fn main() {
-    // INFO: Arrays are static & cannot be resized. They are allocated on the stack and have a
-    // fixed size.
-    let primes = [2, 3, 5, 7, 11];
+    // INFO: Vector
+    let primes: Vec<i32> = Vec::new();
 
-    let doubles: [f64; 5] = [2.0, 3.0, 5.0, 7.0, 11.0];
-    println!("➡ doubles: {:?}", doubles);
+    let mut primes = vec![2, 3, 5];
+    println!("{:?} ", primes);
 
-    let mut numbers = [0; 10];
-    numbers[2] = 42;
-    println!("➡️ numbers: {:?}", numbers);
+    primes.push(7);
+    println!("{:?} ", primes);
 
-    print!("󰅨 ");
-    for number in numbers.iter() {
-        print!("{}, ", number + 3)
+    primes.remove(2);
+    println!("{:?} ", primes);
+
+    let mut numbers = vec![2; 6];
+    println!("{:?} ", numbers);
+    numbers[5] = 8;
+    println!("{:?} ", numbers);
+    for n in numbers.iter() {
+        print!("{:?}, ", n);
     }
 }
