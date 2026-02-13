@@ -1,23 +1,22 @@
 #![allow(dead_code)]
 #[allow(unused_variables)]
 fn main() {
-    // INFO: Vector
-    let primes: Vec<i32> = Vec::new();
+    // SLICE:
+    // WARN: A Slice is a pointer to a block of memory
+    // Can be used on arrays, vectors and strings
+    let numbers = [1, 2, 3, 4, 5];
+    let slice = &numbers[1..4];
+    println!("slice => {:?}", slice);
 
-    let mut primes = vec![2, 3, 5];
-    println!("{:?} ", primes);
+    // ______________________________________________________________________
+    let mut colors = ["red", "green", "blue", "pink"];
+    println!("colors => {:?}", colors);
 
-    primes.push(7);
-    println!("{:?} ", primes);
+    update_colors(&mut colors[2..4]);
+    println!("colors => {:?}", colors)
+}
 
-    primes.remove(2);
-    println!("{:?} ", primes);
-
-    let mut numbers = vec![2; 6];
-    println!("{:?} ", numbers);
-    numbers[5] = 8;
-    println!("{:?} ", numbers);
-    for n in numbers.iter() {
-        print!("{:?}, ", n);
-    }
+fn update_colors(color_slice: &mut [&str]) {
+    color_slice[0] = "yellow";
+    color_slice[1] = "orange";
 }
