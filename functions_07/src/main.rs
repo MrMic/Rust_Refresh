@@ -11,9 +11,9 @@ fn main() {
     println!("a(5) = {}", a(5));
 
     // INFO: Generic functions are functions that can operate on different types without needing to
-    fn prn<T: Display>(x: T) {
+    fn prn<T: Display + ?Sized>(x: &T) {
         println!("{}", x)
     }
     prn("Hello, world!");
-    prn(42);
+    prn(&42);
 }
