@@ -1,3 +1,12 @@
 [workspace]
-members = ["constant_05", "crates_chap05", "data_types_05", "modules_chap05","string_03", "user_input_01", "variables_02"]
+members = [
+  "constant_05",
+  "control_structures_06",
+  "crates_chap05",
+  "data_types_05",
+  "modules_chap05",
+  "string_03",
+  "user_input_01",
+  "variables_02",
+]
 resolver = "3"
