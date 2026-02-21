@@ -3,9 +3,11 @@ members = [
   "constant_05",
   "control_structures_06",
   "crates_chap05",
-  "data_types_05", "functions_07",
+  "data_types_05",
+  "functions_07",
   "modules_chap05",
   "string_03",
+  "trait_08",
   "user_input_01",
   "variables_02",
 ]
