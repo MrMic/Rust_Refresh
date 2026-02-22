@@ -2,28 +2,33 @@
 #![allow(unused_assignments)]
 
 //INFO: STRUCTS _________________________________________________________
-struct Dog {
-    species: &'static str,
-}
-
-struct Cat {
-    color: &'static str,
-}
+struct Dog {}
+struct Cat {}
 
 //INFO: TRAITS & IMPL ___________________________________________________
-trait Bark {
-    fn bark(&self) -> String;
+trait Animal {
+    fn make_noise(&self) -> &'static str;
 }
 
-impl Bark for Dog {
-    fn bark(&self) -> String {
-        format!("{} says: Woof!", self.species)
+impl Animal for Dog {
+    fn make_noise(&self) -> &'static str {
+        "Woof!"
+    }
+}
+
+impl Animal for Cat {
+    fn make_noise(&self) -> &'static str {
+        "Meow!"
     }
 }
 
 // ______________________________________________________________________
-fn bark_it<T: Bark>(animal: T) {
-    println!("{}", animal.bark());
+fn get_animal(random_number: f64) -> Box<dyn Animal> {
+    if random_number < 1.0 {
+        Box::new(Dog {})
+    } else {
+        Box::new(Cat {})
+    }
 }
 
 // ______________________________________________________________________
@@ -31,9 +36,6 @@ fn main() {
     // WARN: Traits are similar to Interfaces in other languages, but they are not the same. They are
     // more powerful and flexible than interfaces in other languages.
 
-    let dog = Dog { species: "Bulldog" };
-    let cat = Cat { color: "Black" };
-
-    bark_it(dog);
-    // bark_it(cat); // WARN: Cat does not implement the Bark trait
+    println!("The animal says: {}", get_animal(0.5).make_noise());
+    println!("The animal says: {}", get_animal(1.5).make_noise());
 }
