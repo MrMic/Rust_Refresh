@@ -2,49 +2,28 @@
 #![allow(unused_assignments)]
 
 //INFO: STRUCTS _________________________________________________________
-struct RustDev {
-    awesome: bool,
+struct Dog {
+    species: &'static str,
 }
 
-struct JSDev {
-    awesome: bool,
+struct Cat {
+    color: &'static str,
 }
 
 //INFO: TRAITS & IMPL ___________________________________________________
-trait Developer {
-    fn new(awesome: bool) -> Self;
-    fn language(&self) -> &str;
-    fn say_hello(&self) {
-        println!("Hello world!")
+trait Bark {
+    fn bark(&self) -> String;
+}
+
+impl Bark for Dog {
+    fn bark(&self) -> String {
+        format!("{} says: Woof!", self.species)
     }
 }
 
-impl Developer for RustDev {
-    fn new(awesome: bool) -> Self {
-        RustDev { awesome }
-    }
-
-    fn language(&self) -> &str {
-        "Rust"
-    }
-
-    fn say_hello(&self) {
-        println!("Hello from Rust!")
-    }
-}
-
-impl Developer for JSDev {
-    fn new(awesome: bool) -> Self {
-        JSDev { awesome }
-    }
-
-    fn language(&self) -> &str {
-        "JavaScript"
-    }
-
-    fn say_hello(&self) {
-        println!("Hello from JavaScript!")
-    }
+// ______________________________________________________________________
+fn bark_it<T: Bark>(animal: T) {
+    println!("{}", animal.bark());
 }
 
 // ______________________________________________________________________
@@ -52,19 +31,9 @@ fn main() {
     // WARN: Traits are similar to Interfaces in other languages, but they are not the same. They are
     // more powerful and flexible than interfaces in other languages.
 
-    let r1 = RustDev { awesome: true };
-    let r2 = RustDev::new(true);
-    println!("{} is awesome: {}", r1.language(), r1.awesome);
-    println!("{} is awesome: {}", r2.language(), r1.awesome);
-    r1.say_hello();
-    r2.say_hello();
-    println!("-----------------------------");
+    let dog = Dog { species: "Bulldog" };
+    let cat = Cat { color: "Black" };
 
-    let js1 = JSDev { awesome: false };
-    let js2 = JSDev::new(false);
-    println!("{} is awesome: {}", js1.language(), js1.awesome);
-    println!("{} is awesome: {}", js2.language(), js2.awesome);
-    js1.say_hello();
-    js2.say_hello();
-    println!("-----------------------------");
+    bark_it(dog);
+    // bark_it(cat); // WARN: Cat does not implement the Bark trait
 }
