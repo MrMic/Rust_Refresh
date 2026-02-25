@@ -1,31 +1,36 @@
 #![allow(unused_variables)]
 #![allow(unused_assignments)]
 
-use std::ops::Add;
-
 //INFO: STRUCTS _________________________________________________________
-#[derive(Debug)]
-struct Point {
-    x: f64,
-    y: f64,
+
+//INFO: TRAITS & IMPL ___________________________________________________
+trait Duplicateable {
+    fn duplicate(&self) -> String;
 }
 
-impl Add for Point {
-    type Output = Self;
-    fn add(self, other: Self) -> Self {
-        Self {
-            x: self.x + other.x,
-            y: self.y + other.y,
-        }
+// ______________________________________________________________________
+impl Duplicateable for String {
+    fn duplicate(&self) -> String {
+        format!("{} - {}", self, self)
     }
 }
 
-//INFO: TRAITS & IMPL ___________________________________________________
+impl Duplicateable for i32 {
+    fn duplicate(&self) -> String {
+        format!("{}", self * 2)
+    }
+}
+
+// ______________________________________________________________________
+fn duplicate<T: Duplicateable>(x: T) {
+    println!("{}", x.duplicate());
+}
 
 // ______________________________________________________________________
 fn main() {
-    let p1 = Point { x: 1.0, y: 2.0 };
-    let p2 = Point { x: 3.0, y: 4.0 };
-    let p3 = p1 + p2;
-    println!("{:?}", p3);
+    let a = 12;
+    let b = String::from("Hello");
+
+    duplicate(a);
+    duplicate(b);
 }
