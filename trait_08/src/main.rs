@@ -2,40 +2,25 @@
 #![allow(unused_assignments)]
 
 //INFO: STRUCTS _________________________________________________________
-struct Dog {}
-struct Cat {}
 
 //INFO: TRAITS & IMPL ___________________________________________________
-trait Animal {
-    fn make_noise(&self) -> &'static str;
+trait Summable<T> {
+    fn sum(&self) -> T;
 }
 
-impl Animal for Dog {
-    fn make_noise(&self) -> &'static str {
-        "Woof!"
-    }
-}
-
-impl Animal for Cat {
-    fn make_noise(&self) -> &'static str {
-        "Meow!"
-    }
-}
-
-// ______________________________________________________________________
-fn get_animal(random_number: f64) -> Box<dyn Animal> {
-    if random_number < 1.0 {
-        Box::new(Dog {})
-    } else {
-        Box::new(Cat {})
+impl Summable<i32> for Vec<i32> {
+    fn sum(&self) -> i32 {
+        let mut sum = 0;
+        for &num in self {
+            sum += num;
+        }
+        sum
     }
 }
 
 // ______________________________________________________________________
 fn main() {
-    // WARN: Traits are similar to Interfaces in other languages, but they are not the same. They are
-    // more powerful and flexible than interfaces in other languages.
-
-    println!("The animal says: {}", get_animal(0.5).make_noise());
-    println!("The animal says: {}", get_animal(1.5).make_noise());
+    let a = vec![1, 2, 3, 4, 5];
+    let result = a.sum();
+    println!("The sum of the vector is: {}", result);
 }
