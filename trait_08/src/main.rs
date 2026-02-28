@@ -22,7 +22,12 @@ impl Duplicateable for i32 {
 }
 
 // ______________________________________________________________________
-fn duplicate<T: Duplicateable>(x: T) {
+// fn duplicate<T: Duplicateable>(x: T) {
+//     println!("{}", x.duplicate());
+// }
+
+// ______________________________________________________________________
+fn duplicate(x: &dyn Duplicateable) {
     println!("{}", x.duplicate());
 }
 
@@ -31,6 +36,8 @@ fn main() {
     let a = 12;
     let b = String::from("Hello");
 
-    duplicate(a);
-    duplicate(b);
+    // duplicate(a);
+    // duplicate(b);
+    duplicate(&a);
+    duplicate(&b);
 }
