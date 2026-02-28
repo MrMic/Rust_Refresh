@@ -5,6 +5,7 @@ members = [
   "crates_chap05",
   "data_types_05",
   "functions_07",
+  "memory_management_09",
   "modules_chap05",
   "string_03",
   "trait_08",
