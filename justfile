@@ -7,7 +7,7 @@ set dotenv-filename := ".env"
 set shell := ["bash", "-cu"]
 
 # Workspace members (crate names)
-user_input_01 := "user_input_01"
+memory_management_09 := "memory_management_09"
 
 # Default recipe
 default: build
@@ -48,17 +48,17 @@ watch:
 
 # run the user_input_01 crate
 [group('dev')]
-run-user_input:
-    cargo run -p {{user_input_01}}
+run-memory_management:
+    cargo run -p {{memory_management_09}}
 
-build-user_input:
-    cargo build -p {{user_input_01}}
+build-memory_management:
+    cargo build -p {{memory_management_09}}
 
-release-user_input:
-    cargo build -p {{user_input_01}} --release
+release-memory_management:
+    cargo build -p {{memory_management_09}} --release
 
-test-user_input:
-    cargo test -p {{user_input_01}}
+test-memory_management:
+    cargo test -p {{memory_management_09}}
 
 
 # -----------------------------
@@ -67,7 +67,7 @@ test-user_input:
 
 info:
     echo "Workspace crates:"
-    echo " - {{user_input_01}}"
+    echo " - {{memory_management_09}}"
     echo ""
     echo "Rust version:"
     rustc --version
