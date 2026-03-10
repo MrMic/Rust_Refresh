@@ -1,9 +1,11 @@
 [workspace]
 members = [
+  "concurrency_11",
   "constant_05",
   "control_structures_06",
   "crates_chap05",
-  "data_types_05", "file_handling_10",
+  "data_types_05",
+  "file_handling_10",
   "functions_07",
   "memory_management_09",
   "modules_chap05",
