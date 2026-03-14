@@ -1,20 +1,24 @@
-use std::{
-    thread::{self, sleep},
-    time::Duration,
-};
+#![allow(unused_variables)]
+#![allow(unused_assignments)]
+
+use std::{sync::mpsc, thread};
 
 fn main() {
-    let mut threads = vec![];
-    for i in 0..10 {
-        let th = thread::spawn(move || {
-            sleep(Duration::from_millis(i * 100));
-            println!("Thread {:?}", i);
-        });
-        threads.push(th);
-    }
+    /*
+    let (tx, rx) = mpsc::channel();
+    thread::spawn(move || {
+        tx.send(42).unwrap();
+    });
+    println!("Received: {}", rx.recv().unwrap());
+    */
 
-    for th in threads {
-        th.join().unwrap();
+    let (tx, rx) = mpsc::channel();
+    thread::spawn(move || {
+        for i in 0..5 {
+            tx.send(i).unwrap();
+        }
+    });
+    for received in rx {
+        println!("Received: {}", received);
     }
-    println!("Main thread");
 }
