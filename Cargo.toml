@@ -1,6 +1,7 @@
 [workspace]
 members = [
   "chat_app_12",
+  "chat_client_12",
   "concurrency_11",
   "constant_05",
   "control_structures_06",
